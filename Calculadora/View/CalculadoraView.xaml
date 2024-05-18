@@ -15,26 +15,27 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="ResultTextBox" Grid.Row="0" FontSize="24" Margin="10" IsReadOnly="True" TextAlignment="Right"/>
+        <TextBox Text="{Binding Result}"
+            Grid.Row="0" FontSize="24" Margin="10" IsReadOnly="True" TextAlignment="Right"/>
 
         <UniformGrid Grid.Row="1" Columns="4" Margin="10">
             <!-- Number Buttons -->
             <Button Content="1" Command="{Binding PressNumberCommand}" CommandParameter="1" />
             <Button Content="2" Command="{Binding PressNumberCommand}" CommandParameter="2"/>
-            <Button Content="3" />
+            <Button Content="3" Command="{Binding PressNumberCommand}" CommandParameter="3"/>
             <Button Content="+" Command="{Binding PressOperatorCommand}" CommandParameter="+" />
-            <Button Content="4" />
-            <Button Content="5" />
-            <Button Content="6" />
-            <Button Content="-" />
-            <Button Content="7" />
-            <Button Content="8" />
-            <Button Content="9" />
-            <Button Content="*" />
-            <Button Content="0" />
-            <Button Content="C" />
-            <Button Content="=" />
-            <Button Content="/" />
+            <Button Content="4" Command="{Binding PressNumberCommand}" CommandParameter="4"/>
+            <Button Content="5" Command="{Binding PressNumberCommand}" CommandParameter="5"/>
+            <Button Content="6" Command="{Binding PressNumberCommand}" CommandParameter="6"/>
+            <Button Content="-" Command="{Binding PressOperatorCommand}" CommandParameter="-"/>
+            <Button Content="7" Command="{Binding PressNumberCommand}" CommandParameter="7"/>
+            <Button Content="8" Command="{Binding PressNumberCommand}" CommandParameter="8"/>
+            <Button Content="9" Command="{Binding PressNumberCommand}" CommandParameter="9"/>
+            <Button Content="*" Command="{Binding PressOperatorCommand}" CommandParameter="*"/>
+            <Button Content="0" Command="{Binding PressNumberCommand}" CommandParameter="0"/>
+            <Button Content="C" Command="{Binding ClearCommand}" />
+            <Button Content="=" Command="{Binding PressEqualsCommand}"/>
+            <Button Content="/" Command="{Binding PressOperatorCommand}" CommandParameter="/"/>
         </UniformGrid>
     </Grid>
 </Window>

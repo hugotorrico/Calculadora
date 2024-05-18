@@ -11,11 +11,12 @@ namespace Calculadora.ViewModel
 {
     public class CalculadoraViewModel : ViewModelBase
     {
-        #region Propieadades
         private double _currentValue = 0;
         private double _previousValue = 0;
         private string _currentOperator = "";
         private bool _isNewValue = false;
+
+        #region Propieadades
 
 
         private string _Result;
@@ -37,6 +38,7 @@ namespace Calculadora.ViewModel
         #region Commandos
 
         public RelayCommand ClearCommand { get; }
+        public RelayCommand PressEqualsCommand { get; }
         public RelayCommand<string> PressNumberCommand { get; }
 
         public RelayCommand<string> PressOperatorCommand { get; }
@@ -47,7 +49,7 @@ namespace Calculadora.ViewModel
         {
 
             //=> Expresiones Lambda, Funciones Flecha
-
+            PressEqualsCommand = new RelayCommand(PressEquals);
             ClearCommand = new RelayCommand(Clear);
             PressNumberCommand = new RelayCommand<string>((s) => PressNumber(s));
             PressOperatorCommand= new RelayCommand<string>((s)=> PressOperator(s));
@@ -82,6 +84,39 @@ namespace Calculadora.ViewModel
                 _isNewValue = true;
            
         }
+
+        private void PressEquals()
+        {
+            _currentValue = double.Parse(Result);
+
+            switch (_currentOperator)
+            {
+                case "+":
+                    _currentValue = _previousValue + _currentValue;
+                    break;
+                case "-":
+                    _currentValue = _previousValue - _currentValue;
+                    break;
+                case "*":
+                    _currentValue = _previousValue * _currentValue;
+                    break;
+                case "/":
+                    if (_currentValue != 0)
+                    {
+                        _currentValue = _previousValue / _currentValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Division by zero is not allowed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        _currentValue = 0;
+                    }
+                    break;
+            }
+
+            Result = _currentValue.ToString();
+            _isNewValue = true;
+        }
+
 
 
         #endregion
