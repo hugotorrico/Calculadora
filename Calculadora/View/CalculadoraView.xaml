@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Calculadora.View"
         mc:Ignorable="d"
         Title="CalculadoraView" Height="400" Width="300">
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -22,7 +22,7 @@
             <Button Content="1" Command="{Binding PressNumberCommand}" CommandParameter="1" />
             <Button Content="2" Command="{Binding PressNumberCommand}" CommandParameter="2"/>
             <Button Content="3" />
-            <Button Content="+" />
+            <Button Content="+" Command="{Binding PressOperatorCommand}" CommandParameter="+" />
             <Button Content="4" />
             <Button Content="5" />
             <Button Content="6" />

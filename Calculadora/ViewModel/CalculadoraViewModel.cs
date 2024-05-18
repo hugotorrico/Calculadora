@@ -39,14 +39,18 @@ namespace Calculadora.ViewModel
         public RelayCommand ClearCommand { get; }
         public RelayCommand<string> PressNumberCommand { get; }
 
+        public RelayCommand<string> PressOperatorCommand { get; }
 
         #endregion
 
         public CalculadoraViewModel()
         {
+
+            //=> Expresiones Lambda, Funciones Flecha
+
             ClearCommand = new RelayCommand(Clear);
             PressNumberCommand = new RelayCommand<string>((s) => PressNumber(s));
-
+            PressOperatorCommand= new RelayCommand<string>((s)=> PressOperator(s));
         }
 
         #region MetodosPrivados
@@ -68,6 +72,15 @@ namespace Calculadora.ViewModel
                 }
             Result += number;
 
+        }
+
+        private void PressOperator(string operator1)
+        {
+            
+                _previousValue = double.Parse(Result);
+                _currentOperator = operator1;
+                _isNewValue = true;
+           
         }
 
 
